@@ -11,6 +11,8 @@ A Google Chrome Extension For Youtube
 ---------------------------------------
 Introduction: 
 
+First, lets procrastinate : https://www.youtube.com/watch?v=3Yff7ZRejtw
+
 Have you ever thought the feature where the video slides with you when you scroll is so awesome ? (Its on FaceBook) 
 
 Have you ever thought how cool it would be to have youtube on any webpage so you can multitask ? 
