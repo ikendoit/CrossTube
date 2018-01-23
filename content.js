@@ -18,7 +18,7 @@ setTimeout(()=> {
     chrome.storage.onChanged.addListener(function(changes, namespace){
         if (changes.hasOwnProperty("size")){
             configure(player,changes.size.newValue);
-			configure(document.getElementById("YOUTUBE_CONFIG_ID"),size.newValue);
+			configure(document.getElementById("YOUTUBE_CONFIG_ID"),changes.size.newValue);
         }
 		if (changes.hasOwnProperty("play")){
 			//inject iframe into page
@@ -50,7 +50,7 @@ let inject = function(url){
 	var newIframe = document.createElement("iframe");
 	div.setAttribute("id","YOUTUBE_CONFIG_ID");
 	div.setAttribute("draggable","true");
-	div.setAttribute("style","position:fixed; top:3; bottom:0; z-index:999; overflow: hidden; padding:5px; background-color:orange; height : 150px; width:330px;");
+	div.setAttribute("style","position:fixed; top:3; bottom:0; z-index:999; overflow: hidden; padding:5px; background-color:orange;");
 	let link = url.split("watch?v=")[1];
 	if (link.includes("&list")){
 		link = link.split("&")[0];
@@ -67,6 +67,7 @@ let inject = function(url){
 //configure player in youtube
 let configure = function(player, size) {
 	if (player == null) return;
+	
     let height = 0;
     let zoom = 0;
     let width = 0;
@@ -91,6 +92,13 @@ let configure = function(player, size) {
             break;
     }
 
+	if (player.id == "YOUTUBE_CONFIG_ID"){
+		player.childNodes[0].setAttribute("height",height*5+"px");
+		player.childNodes[0].setAttribute("width",width*5+"px");
+		//player.setAttribute("height",height*6+"px");
+		//player.setAttribute("width",width*10+"px");
+		return;
+	}
     //set the video style
     player.setAttribute("style","position:fixed; top: 2; clear: both; z-index:18; height : "+(2*height)/3+"%; width : "+(3*width)/5+"%;zoom : "+zoom+"%;");
     player.setAttribute("draggable","true");
