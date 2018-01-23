@@ -15,9 +15,9 @@ function add(){
         text.innerHTML="added video";
         if (tab[0].url.includes("youtube.com")){
             chrome.storage.local.set({"link": ""+tab[0].url});
-        } else {
-            chrome.storage.local.set({"play":false});
-        }
+        } 
+		chrome.storage.local.set({"play":false});
+        
     });
 }
 

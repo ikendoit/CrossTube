@@ -17,15 +17,19 @@ setTimeout(()=> {
     //listen to changes from storage local
     chrome.storage.onChanged.addListener(function(changes, namespace){
         if (changes.hasOwnProperty("size")){
-            configure(player,changes.size.newValue);
-			configure(document.getElementById("YOUTUBE_CONFIG_ID"),changes.size.newValue);
-        }
+			try{
+				configure(player,changes.size.newValue);
+				if (document.getElementById("YOUTUBE_CONFIG_ID") != null){
+					configure(document.getElementById("YOUTUBE_CONFIG_ID"),changes.size.newValue);
+				}
+			} catch (err){
+				console.log("error: "+err);
+			} 
+		}
 		if (changes.hasOwnProperty("play")){
 			//inject iframe into page
 			if (changes.play.newValue){
 				chrome.storage.local.get("link", function(result){
-					console.log(JSON.stringify(result));
-					console.log("adding video to DOM");
 					inject(result.link);
 				});
 			} else {
