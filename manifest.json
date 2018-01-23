@@ -1,0 +1,22 @@
+{
+	"manifest_version": 2, 
+	"name": "Youtubeee", 
+	"version": "0.1", 
+	"description": "an extension", 
+	"content_scripts" : [
+		{
+			"matches" : [
+				"<all_urls>"
+			], 
+			"js" : ["content.js"]
+		}
+	], 
+	"permissions": [
+		"storage",
+        "tabs"
+	],
+	"browser_action" : { 
+		"default_icon": "icon.jpg", 
+		"default_popup": "popup.html"
+	}
+}
